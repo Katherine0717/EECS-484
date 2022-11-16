@@ -1,0 +1,12 @@
+--Query 4: StudentPairs View
+CREATE VIEW StudentPairs AS
+(SELECT S1.SID AS SID1, S2.SID AS SID2
+FROM Students S1, Students S2, Enrollments E1, Enrollments E2
+WHERE S1.SID = E1.SID
+AND S2.SID = E2.SID
+And E1.CID = E2.CID
+AND S1.SID < S2.SID)
+MINUS
+SELECT M1.SID, M2.SID
+FROM Members M1, Members M2
+WHERE M1.PID = M2.PID;
